@@ -9,15 +9,16 @@ public class BibliotecaApp {
     public static void main(String[] args) {
         BibliotecaApp app = new BibliotecaApp();
 
+        System.out.println("-------------------------------Biblioteca System-------------------------------");
         System.out.println("please input your name:");
         Scanner input = new Scanner(System.in);
         String str = input.next();
 
         app.welcomeMessage(str);
-        System.out.println("================BookList================");
+        System.out.println("-------------------------------BookList-------------------------------");
         app.showBookList(app.createBooks());
 
-        System.out.println("================BookList Detail================");
+        System.out.println("-------------------------------BookList Detail-------------------------------");
         app.showBookListDetial(app.createBookDetails());
 
     }
