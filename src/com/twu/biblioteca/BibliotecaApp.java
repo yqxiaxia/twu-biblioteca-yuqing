@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BibliotecaApp {
@@ -11,13 +12,21 @@ public class BibliotecaApp {
         Scanner input = new Scanner(System.in);
         String str = input.next();
 
-        app.biblioteca(str);
+        app.welcomeMessage(str);
+        System.out.println("================BookList================");
+        app.showBookList();
     }
 
-    void biblioteca(String str) {
-
+    void welcomeMessage(String str) {
         if (str.equals("customer")) {
-            System.out.print("Welcome to Biblioteca!");
+            System.out.println("Welcome to Biblioteca!");
+        }
+    }
+
+    void showBookList() {
+        String[] bookList = {"firstBook","secondBook","thirdBook","forthBook","fifthBook"};
+        for (String book: bookList) {
+            System.out.println(book);
         }
     }
 
