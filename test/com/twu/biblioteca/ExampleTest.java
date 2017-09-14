@@ -10,9 +10,13 @@ public class ExampleTest {
 
     @Test
     public void GetWelcomeMassageWhenInputCustomer() throws IOException {
+
+        System.setIn(new ByteArrayInputStream("customer".getBytes()));
+        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
-        new BibliotecaApp().welcomeMessage("customer");
+        new BibliotecaApp().welcomeMessage(console.readLine());
         assertEquals(output.toString(),"Welcome to Biblioteca!\n");
     }
 
