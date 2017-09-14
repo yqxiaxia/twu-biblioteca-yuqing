@@ -23,9 +23,14 @@ public class ExampleTest {
     @Test
     public void GetBookListAfterWelcome(){
 
-        ArrayList<String> bookList = new ArrayList<String>();
-        bookList.add("book-1");
-        bookList.add("book-2");
+        ArrayList<Book> bookList = new ArrayList<Book>();
+        Book book1 = new Book();
+        book1.setBookName("book-1");
+        bookList.add(book1);
+
+        Book book2 = new Book();
+        book2.setBookName("book-2");
+        bookList.add(book2);
 
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
@@ -55,6 +60,19 @@ public class ExampleTest {
         System.setOut(new PrintStream(output));
         new BibliotecaApp().showBookListDetial(bookList);
         assertEquals(output.toString(),"name1 | yuqing1 | 2017-09-11\n" + "name2 | yuqing2 | 2017-09-12\n");
+    }
+
+    @Test
+    public void GetBookListAfterEnterBookLists() throws IOException {
+//        System.setIn(new ByteArrayInputStream("1".getBytes()));
+//        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+//        assertEquals(1, Integer.parseInt(console.readLine()));
+//
+//
+//        ByteArrayOutputStream output = new ByteArrayOutputStream();
+//        System.setOut(new PrintStream(output));
+//        new BibliotecaApp().mainMenu();
+//        assertEquals(output.toString(),"book1");
 
     }
 
