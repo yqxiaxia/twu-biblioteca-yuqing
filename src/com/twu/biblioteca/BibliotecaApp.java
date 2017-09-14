@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,15 +11,45 @@ public class BibliotecaApp {
         System.out.println("-------------------------------Biblioteca System-------------------------------");
         System.out.println("please input your name:");
         Scanner input = new Scanner(System.in);
-        String str = input.next();
+        String strWelcome = input.next();
+        app.welcomeMessage(strWelcome);
 
-        app.welcomeMessage(str);
-        System.out.println("-------------------------------BookList-------------------------------");
-        app.showBookList(app.createBooks());
+        app.mainMenu();
 
         System.out.println("-------------------------------BookList Detail-------------------------------");
         app.showBookListDetial(app.createBookDetails());
 
+    }
+
+    private void mainMenu() {
+        Scanner input = new Scanner(System.in);
+        boolean showList = true;
+        while (showList){
+            System.out.println("1.List Books 2.Quit");
+            int menuOption = -1;
+
+            try {
+                menuOption = input.nextInt();
+            }catch(Exception e){
+                input = new Scanner(System.in);
+            }
+
+            switch (menuOption){
+                case 1:
+                    System.out.println("-------------------------------BookList-------------------------------");
+                    showBookList(createBooks());
+                    showList = false;
+                    break;
+                case 2:
+                    System.exit(0);
+                    showList = false;
+                    break;
+                default:
+                    System.out.println("Select a valid option!");
+                    break;
+
+            }
+        }
     }
 
     void welcomeMessage(String str) {
@@ -29,10 +58,18 @@ public class BibliotecaApp {
         }
     }
 
-    void showBookList(ArrayList<String> bookList) {
+    static void showBookList(ArrayList<String> bookList) {
         for (String book: bookList) {
             System.out.println(book);
         }
+    }
+
+    private static ArrayList<String> createBooks(){
+        ArrayList<String> bookList = new ArrayList<String>();
+        for (int i = 0; i < 10; i++) {
+            bookList.add("book-"+i);
+        }
+        return bookList;
     }
 
     void showBookListDetial(ArrayList<Book> bookList) {
@@ -41,7 +78,7 @@ public class BibliotecaApp {
         }
     }
 
-    private ArrayList<Book> createBookDetails(){
+    private static ArrayList<Book> createBookDetails(){
         ArrayList<Book> bookList = new ArrayList<Book>();
         for (int i = 0; i < 10; i++) {
             Book book = new Book();
@@ -53,14 +90,5 @@ public class BibliotecaApp {
         }
         return bookList;
     }
-
-    private ArrayList<String> createBooks(){
-        ArrayList<String> bookList = new ArrayList<String>();
-        for (int i = 0; i < 10; i++) {
-            bookList.add("book-"+i);
-        }
-        return bookList;
-    }
-
 
 }

@@ -1,8 +1,7 @@
 package com.twu.biblioteca;
 
 import org.junit.Test;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.io.*;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
@@ -10,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 public class ExampleTest {
 
     @Test
-    public void GetWelcomeMassageWhenInputCustomer() {
+    public void GetWelcomeMassageWhenInputCustomer() throws IOException {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
         new BibliotecaApp().welcomeMessage("customer");
@@ -26,7 +25,7 @@ public class ExampleTest {
 
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
-        new BibliotecaApp().showBookList(bookList);
+        BibliotecaApp.showBookList(bookList);
         assertEquals(output.toString(),"book-1\n"+ "book-2\n");
     }
 
