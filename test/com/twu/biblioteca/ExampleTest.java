@@ -59,7 +59,7 @@ public class ExampleTest {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
         new BibliotecaApp().showBookListDetial(bookList);
-        assertEquals(output.toString(),"name1 | yuqing1 | 2017-09-11\n" + "name2 | yuqing2 | 2017-09-12\n");
+        assertEquals(output.toString(),"1 | name1 | yuqing1 | 2017-09-11\n" + "2 | name2 | yuqing2 | 2017-09-12\n");
     }
 
     @Test
