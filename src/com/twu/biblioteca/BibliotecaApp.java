@@ -5,101 +5,91 @@ import java.util.Scanner;
 
 public class BibliotecaApp {
 
-    public static Library library = new Library();
+    private static Library library = new Library();
 
     public static void main(String[] args) {
         BibliotecaApp app = new BibliotecaApp();
-
-        library.setBookList(createBookDetails());
+        SystemInput systemInput = new SystemInput();
+        library.initBookDetails();
 
         System.out.println("-------------------------------Biblioteca System-------------------------------");
-        System.out.println("please input your name:");
-        Scanner input = new Scanner(System.in);
-        String strWelcome = input.next();
-        app.welcomeMessage(strWelcome);
 
-        app.mainMenu();
-        app.chooseCheckoutBook();
+        app.welcomeMessage(systemInput);
+        app.mainMenu(systemInput);
+        System.out.println("--------------------------------BookList Detail--------------------------------");
+        showBookListDetial(library.getBookList());
+        app.chooseCheckoutBook(systemInput);
+        app.checkoutBook(systemInput);
+        app.chooseCheckoutBook(systemInput);
+        System.out.println("--------------------------------BookList Detail--------------------------------");
+        showBookListDetial(library.getBookList());
 
     }
 
-    private void mainMenu() {
-        Scanner input = new Scanner(System.in);
-        boolean showList = true;
-        while (showList) {
-            System.out.println("1.List Books 2.Quit");
-            int menuOption = -1;
-
+    void mainMenu(SystemInput systemInput) {
+        boolean showMenu = true;
+        while (showMenu) {
+            System.out.println("1.List Book  2.Quit");
+            int menuOption;
             try {
-                menuOption = input.nextInt();
+                menuOption = systemInput.getInputInt();
             } catch (Exception e) {
-                input = new Scanner(System.in);
+                menuOption = -1;
             }
-
             switch (menuOption) {
                 case 1:
-                    System.out.println("-------------------------------BookList Detail-------------------------------");
-                    showBookListDetial(createBookDetails());
-                    showList = false;
+                    showMenu = false;
                     break;
                 case 2:
                     System.exit(0);
-                    showList = false;
                     break;
                 default:
-                    System.out.println("Select a valid option!");
+                    System.out.println("Select a valid option!\n");
                     break;
-
             }
         }
     }
 
-    private void chooseCheckoutBook() {
-        Scanner input = new Scanner(System.in);
+    private void chooseCheckoutBook(SystemInput systemInput) {
         boolean showCheckout = true;
         while (showCheckout) {
             System.out.println("1.Check-out 2.Quit");
 
-            int listOption = -1;
-
+            int checkOption;
             try {
-                listOption = input.nextInt();
+                checkOption = systemInput.getInputInt();
             } catch (Exception e) {
-                input = new Scanner(System.in);
+                checkOption = -1;
             }
 
-            switch (listOption) {
+            switch (checkOption) {
                 case 1:
-                    System.out.print("Check-out book id:");
-                    input = new Scanner(System.in);
-                    checkoutBook(input);
                     showCheckout = false;
                     break;
                 case 2:
                     System.exit(0);
-                    showCheckout = false;
                     break;
                 default:
                     System.out.println("Select a valid option!");
                     break;
-
             }
-
         }
     }
 
-    private void checkoutBook(Scanner input) {
+    private void checkoutBook(SystemInput systemInput) {
         boolean hasBook = false;
         boolean checkoutBook = true;
 
         while (checkoutBook) {
-            int checekOutBookId = -1;
+            System.out.println("Please input Check-out book id:");
+
+            int checekOutBookId;
             try {
-                checekOutBookId = input.nextInt();
+                checekOutBookId = systemInput.getInputInt();
             } catch (Exception e) {
-                System.out.println("Select a valid option!");
-                input = new Scanner(System.in);
+                checekOutBookId = -1;
             }
+
             ArrayList<Book> bookList = library.getBookList();
             if (library.getBookList().size() > 0 && checekOutBookId > -1) {
                 for (Book book : bookList) {
@@ -113,10 +103,11 @@ public class BibliotecaApp {
                 if (hasBook) {
                     System.out.println("Thank you! Enjoy the book");
                 } else {
-                    System.out.println("That book is not available");
+                    System.out.print("That book has Checked out,");
                 }
+                hasBook = false;
             } else {
-                System.out.println("That book is not available");
+                System.out.print("That book is not available,");
 
             }
         }
@@ -125,12 +116,17 @@ public class BibliotecaApp {
     }
 
 
-    void welcomeMessage(String str) {
-        if (str.equals("customer")) {
-            System.out.println("Welcome to Biblioteca!");
-        }else {
-            System.out.println("User name error!");
-            System.exit(0);
+    void welcomeMessage(SystemInput systemInput) {
+        while (true) {
+            System.out.println("please input your name:");
+
+            String name = systemInput.getInputString();
+            if (name.equals("YuqingXia")) {
+                System.out.println("Welcome " + name + " to Biblioteca!\n");
+                break;
+            } else {
+                System.out.println("User name error,please try again!");
+            }
         }
     }
 
@@ -145,18 +141,4 @@ public class BibliotecaApp {
             System.out.println(book.getBookId() + " | " + book.getBookName() + " | " + book.getBookAuthor() + " | " + book.getBookPubliced());
         }
     }
-
-    private static ArrayList<Book> createBookDetails() {
-        ArrayList<Book> bookList = new ArrayList<Book>();
-        for (int i = 0; i < 10; i++) {
-            Book book = new Book();
-            book.setBookId(i);
-            book.setBookName("book-" + i);
-            book.setBookAuthor("yuqing-" + i);
-            book.setBookPubliced("2017-09-0" + i);
-            bookList.add(book);
-        }
-        return bookList;
-    }
-
 }

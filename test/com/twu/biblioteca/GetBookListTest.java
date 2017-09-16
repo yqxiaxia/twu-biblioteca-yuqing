@@ -1,24 +1,15 @@
 package com.twu.biblioteca;
 
 import org.junit.Test;
+
 import java.io.*;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-public class ExampleTest {
-
-    @Test
-    public void GetWelcomeMassageWhenInputCustomer() throws IOException {
-
-        System.setIn(new ByteArrayInputStream("customer".getBytes()));
-        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-
-        ByteArrayOutputStream output = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(output));
-        new BibliotecaApp().welcomeMessage(console.readLine());
-        assertEquals(output.toString(),"Welcome to Biblioteca!\n");
-    }
+public class GetBookListTest {
 
     @Test
     public void GetBookListAfterWelcome(){
@@ -60,20 +51,6 @@ public class ExampleTest {
         System.setOut(new PrintStream(output));
         new BibliotecaApp().showBookListDetial(bookList);
         assertEquals(output.toString(),"1 | name1 | yuqing1 | 2017-09-11\n" + "2 | name2 | yuqing2 | 2017-09-12\n");
-    }
-
-    @Test
-    public void GetBookListAfterEnterBookLists() throws IOException {
-//        System.setIn(new ByteArrayInputStream("1".getBytes()));
-//        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-//        assertEquals(1, Integer.parseInt(console.readLine()));
-//
-//
-//        ByteArrayOutputStream output = new ByteArrayOutputStream();
-//        System.setOut(new PrintStream(output));
-//        new BibliotecaApp().mainMenu();
-//        assertEquals(output.toString(),"book1");
-
     }
 
 }
