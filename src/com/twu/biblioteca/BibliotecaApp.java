@@ -15,10 +15,10 @@ public class BibliotecaApp {
         app.userLogin(systemInput);
         app.mainMenu(systemInput);
         System.out.println("--------------------------------BookList Detail--------------------------------");
-        showBookListDetial(library.getBookList());
+        app.showBookListDetial(library.getBookList());
         System.out.println();
         app.chooseCheckoutBook(systemInput,library.getBookList());
-        showBookListDetial(library.getBookList());
+        app.showBookListDetial(library.getBookList());
 
     }
 
@@ -126,13 +126,13 @@ public class BibliotecaApp {
         }
     }
 
-    static void showBookList(ArrayList<Book> bookList) {
+    void showBookList(ArrayList<Book> bookList) {
         for (Book book : bookList) {
             System.out.println(book.getBookName());
         }
     }
 
-    static void showBookListDetial(ArrayList<Book> bookList) {
+    void showBookListDetial(ArrayList<Book> bookList) {
         for (Book book : bookList) {
             System.out.println(book.getBookId() + " | " + book.getBookName() + " | " + book.getBookAuthor() + " | " + book.getBookPubliced());
         }
