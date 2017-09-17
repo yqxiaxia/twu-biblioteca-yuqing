@@ -137,4 +137,8 @@ public class BibliotecaApp {
             System.out.println(book.getBookId() + " | " + book.getBookName() + " | " + book.getBookAuthor() + " | " + book.getBookPubliced());
         }
     }
+
+    public static void exitTest(){
+        System.exit(0);
+    }
 }

@@ -1,6 +1,9 @@
 package com.twu.biblioteca;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.contrib.java.lang.system.ExpectedSystemExit;
+
 import java.io.ByteArrayOutputStream;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
@@ -10,6 +13,9 @@ public class MainMenuTest {
     private SystemInput systemInput = mock(SystemInput.class);
     private BibliotecaApp app = new BibliotecaApp();
     private Helper helper = new Helper();
+
+    @Rule
+    public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
     @Test
     public void showBookListDeatilWhenInput1() throws Exception {
@@ -29,9 +35,9 @@ public class MainMenuTest {
 
     @Test
     public void exitSystemWhenInput2() throws Exception {
-//        when(systemInput.getInputInt()).thenReturn(2);
-//        ByteArrayOutputStream systemOutput = helper.systemOutput();
-//        app.mainMenu(systemInput);
+        when(systemInput.getInputInt()).thenReturn(2);
+        exit.expectSystemExitWithStatus(0);
+        app.mainMenu(systemInput);
     }
 
 }
