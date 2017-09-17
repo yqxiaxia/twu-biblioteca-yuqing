@@ -46,8 +46,7 @@ public class BibliotecaApp {
     }
 
     void bookManageMenu(SystemInput systemInput, ArrayList<Book> bookList) {
-        boolean bookManage = true;
-        while (bookManage) {
+        while (true) {
             System.out.println("1.Check-out 2.Return Book 3.Quit");
 
             int checkOption;
@@ -59,11 +58,9 @@ public class BibliotecaApp {
 
             switch (checkOption) {
                 case 1:
-//                    bookManage = false;
                     checkoutBook(systemInput, bookList);
                     break;
                 case 2:
-//                    bookManage = false;
                     returnBook(systemInput,bookList);
                     break;
                 case 3:
