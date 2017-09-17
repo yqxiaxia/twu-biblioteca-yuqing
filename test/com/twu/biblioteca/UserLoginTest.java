@@ -24,8 +24,9 @@ public class UserLoginTest {
         when(systemInput.getInputString()).thenReturn("onbody").thenReturn("YuqingXia");
         ByteArrayOutputStream systemOutput = helper.systemOutput();
         app.userLogin(systemInput);
-        assertEquals("please input your name:\n" + "User name error,please try again!\n" +
-                             "please input your name:\n" + "Welcome YuqingXia to Biblioteca!\n\n", systemOutput.toString());
+        assertEquals("please input your name:\n" +
+                "User name error,please try again! please input your name:\n" +
+                "Welcome YuqingXia to Biblioteca!\n\n", systemOutput.toString());
         verify(systemInput, times(2)).getInputString();
     }
 }

@@ -17,7 +17,7 @@ public class BibliotecaApp {
         System.out.println("--------------------------------BookList Detail--------------------------------");
         app.showBookListDetial(library.getBookList());
         System.out.println();
-        app.chooseCheckoutBook(systemInput,library.getBookList());
+        app.bookManageMenu(systemInput,library.getBookList());
         app.showBookListDetial(library.getBookList());
 
     }
@@ -46,10 +46,10 @@ public class BibliotecaApp {
         }
     }
 
-    void chooseCheckoutBook(SystemInput systemInput,ArrayList<Book> bookList) {
+    void bookManageMenu(SystemInput systemInput, ArrayList<Book> bookList) {
         boolean showCheckout = true;
         while (showCheckout) {
-            System.out.println("1.Check-out 2.Quit");
+            System.out.println("1.Check-out 2.Return Book 3.Quit");
 
             int checkOption;
             try {
@@ -63,7 +63,7 @@ public class BibliotecaApp {
                     showCheckout = false;
                     checkoutBook(systemInput, bookList);
                     break;
-                case 2:
+                case 3:
                     System.exit(0);
                     break;
                 default:
