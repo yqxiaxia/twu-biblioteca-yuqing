@@ -148,7 +148,7 @@ public class BibliotecaApp {
                 }
             }
             if (hasBook){
-                System.out.println("Thank you for returning the book. ");
+                System.out.println("Thank you for returning the book.");
             }else {
                 System.out.print("That is not a valid book to return. ");
             }
