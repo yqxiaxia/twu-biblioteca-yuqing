@@ -1,3 +1,5 @@
 out/
 src/com/twu/biblioteca/testApp.java
 src/com/twu/biblioteca/testMenu.java
+src/com/twu/biblioteca/AppWithExit.java
+test/com/twu/biblioteca/AppWithExitTest.java
