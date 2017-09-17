@@ -26,8 +26,8 @@ public class GetBookListTest {
         ArrayList<Book> bookList = helper.createBookListInTest();
         ByteArrayOutputStream systemOutput =helper.systemOutput();
         app.showBookListDetial(bookList);
-        assertEquals("0 | testbook-0 | test-0 | 2017-10-00\n" +
-                "1 | testbook-1 | test-1 | 2017-10-01\n",systemOutput.toString());
+        assertEquals("0 | testbook-0 | test-0 | 2017-10-00 | true\n" +
+                "1 | testbook-1 | test-1 | 2017-10-01 | true\n",systemOutput.toString());
     }
 
 }
