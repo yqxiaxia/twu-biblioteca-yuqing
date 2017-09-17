@@ -47,8 +47,8 @@ public class BibliotecaApp {
     }
 
     void bookManageMenu(SystemInput systemInput, ArrayList<Book> bookList) {
-        boolean showCheckout = true;
-        while (showCheckout) {
+        boolean bookManage = true;
+        while (bookManage) {
             System.out.println("1.Check-out 2.Return Book 3.Quit");
 
             int checkOption;
@@ -60,8 +60,12 @@ public class BibliotecaApp {
 
             switch (checkOption) {
                 case 1:
-                    showCheckout = false;
+                    bookManage = false;
                     checkoutBook(systemInput, bookList);
+                    break;
+                case 2:
+                    bookManage = false;
+                    returnBook(systemInput,bookList);
                     break;
                 case 3:
                     System.exit(0);
@@ -74,7 +78,6 @@ public class BibliotecaApp {
     }
 
     private void checkoutBook(SystemInput systemInput, ArrayList<Book> bookList) {
-        boolean hasBook = false;
         boolean checkoutBook = true;
 
         while (checkoutBook) {
@@ -87,28 +90,73 @@ public class BibliotecaApp {
                 checekOutBookId = -1;
             }
 
-            if (bookList.size() > 0 && checekOutBookId != -1) {
-                for (Book book : bookList) {
-                    if (book.getBookId() == checekOutBookId) {
-                        bookList.remove(book);
-                        hasBook = true;
-                        checkoutBook = false;
-                        break;
-                    }
+            checkoutBook = removeBookById(bookList,checekOutBookId);
+        }
+    }
+
+    private boolean removeBookById(ArrayList<Book> bookList,int checekOutBookId){
+        boolean checkoutBook = true;
+        boolean hasBook = false;
+        if (bookList.size() > 0 && checekOutBookId != -1) {
+            for (Book book : bookList) {
+                if (book.getBookId() == checekOutBookId && book.isInLibrary()) {
+                    book.setInLibrary(false);
+                    hasBook = true;
+                    checkoutBook = false;
+                    break;
                 }
-                if (hasBook) {
-                    System.out.println("Thank you! Enjoy the book");
-                } else {
-                    System.out.print("That book is not available, ");
-                }
-                hasBook = false;
+            }
+            if (hasBook) {
+                System.out.println("Thank you! Enjoy the book");
             } else {
                 System.out.print("That book is not available, ");
-
             }
+        } else {
+            System.out.print("That book is not available, ");
         }
+        return checkoutBook;
+    }
 
 
+    private void returnBook(SystemInput systemInput,ArrayList<Book> bookList){
+        boolean returnBook = true;
+
+        while (returnBook) {
+            System.out.println("Please input return book id:");
+
+            int returnBookId;
+            try {
+                returnBookId = systemInput.getInputInt();
+            } catch (Exception e) {
+                returnBookId = -1;
+            }
+
+            returnBook = addBookById(bookList,returnBookId);
+        }
+    }
+
+    private boolean addBookById(ArrayList<Book> bookList, int returnBookId) {
+        boolean returnBook = true;
+        boolean hasBook = false;
+        if (bookList.size() > 0 && returnBookId != -1) {
+            for (Book book : bookList) {
+                if (book.getBookId() == returnBookId && !book.isInLibrary()) {
+                    book.setInLibrary(true);
+                    returnBook = false;
+                    hasBook = true;
+                    break;
+                }
+            }
+            if (hasBook){
+                System.out.println("Thank you for returning the book. ");
+            }else {
+                System.out.print("That is not a valid book to return. ");
+            }
+
+        } else {
+            System.out.print("That is not a valid book to return. ");
+        }
+        return returnBook;
     }
 
 
@@ -136,9 +184,5 @@ public class BibliotecaApp {
         for (Book book : bookList) {
             System.out.println(book.getBookId() + " | " + book.getBookName() + " | " + book.getBookAuthor() + " | " + book.getBookPubliced());
         }
-    }
-
-    public static void exitTest(){
-        System.exit(0);
     }
 }

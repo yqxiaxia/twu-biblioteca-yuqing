@@ -18,13 +18,13 @@ public class CheckBookTest {
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
     @Test
-    public void shouldRemoveOneBookInBookListWhenInputBookNumber() throws Exception {
+    public void shouldRemoveOneBookInBookListWhenInputCheckOutBookNumber() throws Exception {
         when(systemInput.getInputInt()).thenReturn(1).thenReturn(1);
         ByteArrayOutputStream systemOutput = helper.systemOutput();
         ArrayList<Book> bookList = helper.createBookListInTest();
         app.bookManageMenu(systemInput, bookList);
         verify(systemInput, times(2)).getInputInt();
-        assertEquals(bookList.size(), 2);
+        assertEquals(false,bookList.get(1).isInLibrary());
         assertEquals("1.Check-out 2.Return Book 3.Quit\n" +
                 "Please input Check-out book id:\n" +
                 "Thank you! Enjoy the book\n", systemOutput.toString());
@@ -37,7 +37,6 @@ public class CheckBookTest {
         ArrayList<Book> bookList = helper.createBookListInTest();
         app.bookManageMenu(systemInput, bookList);
         verify(systemInput, times(3)).getInputInt();
-        assertEquals(bookList.size(), 2);
         assertEquals("1.Check-out 2.Return Book 3.Quit\n" +
                 "Please input Check-out book id:\n" +
                 "That book is not available, Please input Check-out book id:\n" +

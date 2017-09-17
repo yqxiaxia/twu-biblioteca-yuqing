@@ -4,6 +4,15 @@ public class Book {
     private int bookId;
     private String bookName;
     private String bookAuthor;
+    private boolean inLibrary;
+
+    public boolean isInLibrary() {
+        return inLibrary;
+    }
+
+    public void setInLibrary(boolean inLibrary) {
+        this.inLibrary = inLibrary;
+    }
 
     int getBookId() {
         return bookId;

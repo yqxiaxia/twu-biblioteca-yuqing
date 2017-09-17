@@ -4,7 +4,11 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 
-import static org.mockito.Mockito.mock;
+import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
 
 public class ReturnBookTest {
 
@@ -16,7 +20,13 @@ public class ReturnBookTest {
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
     @Test
-    public void test(){
+    public void shouldAddOneBookInBookListWhenInputReturnBookNumber() throws Exception {
+        when(systemInput.getInputInt()).thenReturn(2).thenReturn(1);
+//        ByteArrayOutputStream systemOutput = helper.systemOutput();
+        ArrayList<Book> bookList = helper.createBookListHasCheckout();
+        app.bookManageMenu(systemInput, bookList);
+        verify(systemInput, times(2)).getInputInt();
+        assertEquals(true,bookList.get(1).isInLibrary());
 
     }
 

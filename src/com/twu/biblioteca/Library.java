@@ -22,6 +22,7 @@ class Library {
             book.setBookName("book-" + i);
             book.setBookAuthor("yuqing-" + i);
             book.setBookPubliced("2017-09-0" + i);
+            book.setInLibrary(true);
             bookList.add(book);
         }
         setBookList(bookList);
