@@ -2,7 +2,7 @@ package com.twu.biblioteca;
 
 import java.util.ArrayList;
 
-public class Library {
+class Library {
 
     private ArrayList<Book> bookList = new ArrayList<Book>();
 
@@ -10,7 +10,7 @@ public class Library {
         return bookList;
     }
 
-    void setBookList(ArrayList<Book> bookList) {
+    private void setBookList(ArrayList<Book> bookList) {
         this.bookList = bookList;
     }
 

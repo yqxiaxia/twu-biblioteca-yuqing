@@ -1,7 +1,6 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class BibliotecaApp {
 
@@ -13,15 +12,12 @@ public class BibliotecaApp {
         library.initBookDetails();
 
         System.out.println("-------------------------------Biblioteca System-------------------------------");
-
-        app.welcomeMessage(systemInput);
+        app.userLogin(systemInput);
         app.mainMenu(systemInput);
         System.out.println("--------------------------------BookList Detail--------------------------------");
         showBookListDetial(library.getBookList());
-        app.chooseCheckoutBook(systemInput);
-        app.checkoutBook(systemInput);
-        app.chooseCheckoutBook(systemInput);
-        System.out.println("--------------------------------BookList Detail--------------------------------");
+        System.out.println();
+        app.chooseCheckoutBook(systemInput,library.getBookList());
         showBookListDetial(library.getBookList());
 
     }
@@ -44,13 +40,13 @@ public class BibliotecaApp {
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Select a valid option!\n");
+                    System.out.print("Select a valid option! ");
                     break;
             }
         }
     }
 
-    private void chooseCheckoutBook(SystemInput systemInput) {
+    void chooseCheckoutBook(SystemInput systemInput,ArrayList<Book> bookList) {
         boolean showCheckout = true;
         while (showCheckout) {
             System.out.println("1.Check-out 2.Quit");
@@ -65,18 +61,19 @@ public class BibliotecaApp {
             switch (checkOption) {
                 case 1:
                     showCheckout = false;
+                    checkoutBook(systemInput, bookList);
                     break;
                 case 2:
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Select a valid option!");
+                    System.out.print("Select a valid option! ");
                     break;
             }
         }
     }
 
-    private void checkoutBook(SystemInput systemInput) {
+    private void checkoutBook(SystemInput systemInput, ArrayList<Book> bookList) {
         boolean hasBook = false;
         boolean checkoutBook = true;
 
@@ -90,8 +87,7 @@ public class BibliotecaApp {
                 checekOutBookId = -1;
             }
 
-            ArrayList<Book> bookList = library.getBookList();
-            if (library.getBookList().size() > 0 && checekOutBookId > -1) {
+            if (bookList.size() > 0 && checekOutBookId != -1) {
                 for (Book book : bookList) {
                     if (book.getBookId() == checekOutBookId) {
                         bookList.remove(book);
@@ -103,11 +99,11 @@ public class BibliotecaApp {
                 if (hasBook) {
                     System.out.println("Thank you! Enjoy the book");
                 } else {
-                    System.out.print("That book has Checked out,");
+                    System.out.print("That book is not available, ");
                 }
                 hasBook = false;
             } else {
-                System.out.print("That book is not available,");
+                System.out.print("That book is not available, ");
 
             }
         }
@@ -116,7 +112,7 @@ public class BibliotecaApp {
     }
 
 
-    void welcomeMessage(SystemInput systemInput) {
+    void userLogin(SystemInput systemInput) {
         while (true) {
             System.out.println("please input your name:");
 
@@ -125,7 +121,7 @@ public class BibliotecaApp {
                 System.out.println("Welcome " + name + " to Biblioteca!\n");
                 break;
             } else {
-                System.out.println("User name error,please try again!");
+                System.out.print("User name error,please try again! ");
             }
         }
     }
