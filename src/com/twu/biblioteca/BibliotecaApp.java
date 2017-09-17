@@ -18,7 +18,6 @@ public class BibliotecaApp {
         app.showBookListDetial(library.getBookList());
         System.out.println();
         app.bookManageMenu(systemInput,library.getBookList());
-        app.showBookListDetial(library.getBookList());
 
     }
 
@@ -60,11 +59,11 @@ public class BibliotecaApp {
 
             switch (checkOption) {
                 case 1:
-                    bookManage = false;
+//                    bookManage = false;
                     checkoutBook(systemInput, bookList);
                     break;
                 case 2:
-                    bookManage = false;
+//                    bookManage = false;
                     returnBook(systemInput,bookList);
                     break;
                 case 3:
@@ -182,7 +181,9 @@ public class BibliotecaApp {
 
     void showBookListDetial(ArrayList<Book> bookList) {
         for (Book book : bookList) {
-            System.out.println(book.getBookId() + " | " + book.getBookName() + " | " + book.getBookAuthor() + " | " + book.getBookPubliced());
+            System.out.println(book.getBookId() + " | " + book.getBookName() + " | "
+                             + book.getBookAuthor() + " | " + book.getBookPubliced() + " | "
+                             + book.isInLibrary());
         }
     }
 }
