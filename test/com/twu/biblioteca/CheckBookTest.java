@@ -18,7 +18,7 @@ public class CheckBookTest {
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
     @Test
-    public void shouldRemoveOneBookInBookListWhenInputCheckOutBookNumber() throws Exception {
+    public void shouldSetInLibraryFalseWhenInputCheckOutBookNumber() throws Exception {
         when(systemInput.getInputInt()).thenReturn(1).thenReturn(1);
         ByteArrayOutputStream systemOutput = helper.systemOutput();
         ArrayList<Book> bookList = helper.createBookListInTest();
@@ -31,7 +31,7 @@ public class CheckBookTest {
     }
 
     @Test
-    public void shouldCallTwiceWhenInputInvaildAndThenInputVaildNumber() throws Exception {
+    public void shouldCallTwiceWhenInputInvalidAndThenInputValidNumber() throws Exception {
         when(systemInput.getInputInt()).thenReturn(1).thenReturn(10).thenReturn(1);
         ByteArrayOutputStream systemOutput = helper.systemOutput();
         ArrayList<Book> bookList = helper.createBookListInTest();
