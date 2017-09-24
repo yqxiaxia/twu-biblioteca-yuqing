@@ -256,10 +256,16 @@ public class BibliotecaApp {
             String libraryNum = systemInput.getInputString();
             if (isValid(libraryNum)){
                 if (libraryNum.equals("007-1234")) {
-                    System.out.println("Welcome " + libraryNum + " to Biblioteca!\n");
-                    break;
+                    System.out.println("please input your password:");
+                    String psw = systemInput.getInputString();
+                    if (psw.equals("123456")){
+                        System.out.println("Welcome " + libraryNum + " to Biblioteca!\n");
+                        break;
+                    }else {
+                        System.out.println("Error password,please try again!");
+                    }
                 } else {
-                    System.out.print("User name error,please try again! ");
+                    System.out.print("Library number error,please try again! ");
                 }
             }else {
                 System.out.print("Invalid library number,please try again! ");

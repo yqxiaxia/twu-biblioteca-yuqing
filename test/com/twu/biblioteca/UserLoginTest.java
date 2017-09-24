@@ -32,24 +32,51 @@ public class UserLoginTest {
 
     @Test
     public void GetWelcomeMassageWhenInputRightLibraryNumAndPsw() throws IOException {
-        when(systemInput.getInputString()).thenReturn("007-1234");
+        when(systemInput.getInputString()).thenReturn("007-1234").thenReturn("123456");
         ByteArrayOutputStream systemOutput =helper.systemOutput();
         app.userLoginWithPsw(systemInput);
         assertEquals("please input your library number:\n" +
+                "please input your password:\n" +
                 "Welcome 007-1234 to Biblioteca!\n\n", systemOutput.toString());
     }
 
     @Test
-    public void showErrorMassageWhenInputInvalidLibraryNumber() throws IOException {
-        when(systemInput.getInputString()).thenReturn("007-123").thenReturn("007-1234");
+    public void showInvalidMassageWhenInputInvalidLibraryNumber() throws IOException {
+        when(systemInput.getInputString()).thenReturn("007-123").thenReturn("007-1234").thenReturn("123456");
         ByteArrayOutputStream systemOutput =helper.systemOutput();
         app.userLoginWithPsw(systemInput);
         assertEquals("please input your library number:\n" +
                 "Invalid library number,please try again! please input your library number:\n" +
+                "please input your password:\n" +
                 "Welcome 007-1234 to Biblioteca!\n\n", systemOutput.toString());
-        verify(systemInput,times(2)).getInputString();
+        verify(systemInput,times(3)).getInputString();
     }
 
+    @Test
+    public void showErrorMassageWhenInputErrorLibraryNumber() throws IOException {
+        when(systemInput.getInputString()).thenReturn("008-1234").thenReturn("007-1234").thenReturn("123456");
+        ByteArrayOutputStream systemOutput =helper.systemOutput();
+        app.userLoginWithPsw(systemInput);
+        assertEquals("please input your library number:\n" +
+                "Library number error,please try again! please input your library number:\n" +
+                "please input your password:\n" +
+                "Welcome 007-1234 to Biblioteca!\n\n", systemOutput.toString());
+        verify(systemInput,times(3)).getInputString();
+    }
 
+    @Test
+    public void showErrorMassageWhenInputErrorPassword() throws IOException {
+        when(systemInput.getInputString()).thenReturn("007-1234").thenReturn("12345")
+                                          .thenReturn("007-1234").thenReturn("123456");
+        ByteArrayOutputStream systemOutput =helper.systemOutput();
+        app.userLoginWithPsw(systemInput);
+        assertEquals("please input your library number:\n" +
+                "please input your password:\n" +
+                "Error password,please try again!\n" +
+                "please input your library number:\n" +
+                "please input your password:\n" +
+                "Welcome 007-1234 to Biblioteca!\n\n", systemOutput.toString());
+        verify(systemInput,times(4)).getInputString();
+    }
 
 }
