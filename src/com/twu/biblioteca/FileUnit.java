@@ -60,6 +60,34 @@ public class FileUnit {
         return movie;
     }
 
+    public static User readUserFromFile(String fileName) {
+        User user = new User();
+        File file = new File(fileName);
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader(file));
+            String temp = null;
+            while ((temp = reader.readLine()) != null) {
+                user = getUserFromLine(temp.split(","));
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    private static User getUserFromLine(String[] str) {
+        User user= new User();
+        user.setLibraryNumber(str[0]);
+        user.setName(str[1]);
+        user.setPassword(str[2]);
+        user.setPhoneNumber(str[3]);
+        user.setEmail(str[4]);
+        user.setAddress(str[5]);
+        return user;
+    }
+
     public static void writeBookToFile(String filename, ArrayList<Book> list) {
 
         StringBuilder sb = new StringBuilder();
@@ -89,6 +117,19 @@ public class FileUnit {
         writeFile(filename, sb);
     }
 
+    public static void writeUserToFile(String filename, ArrayList<User> list) {
+        StringBuilder sb = new StringBuilder();
+
+        for (User user : list) {
+            sb.append(user.getLibraryNumber()).append(",")
+                    .append(user.getName()).append(",")
+                    .append(user.getPassword()).append(",")
+                    .append(user.getPhoneNumber()).append(",")
+                    .append(user.getEmail()).append(",")
+                    .append(user.getAddress()).append("\n");
+        }
+        writeFile(filename, sb);
+    }
     private static void writeFile(String filename, StringBuilder sb) {
         try {
             FileWriter writer = new FileWriter(filename);

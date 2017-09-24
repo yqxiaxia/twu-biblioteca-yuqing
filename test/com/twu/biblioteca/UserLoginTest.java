@@ -10,6 +10,7 @@ public class UserLoginTest {
     private SystemInput systemInput = mock(SystemInput.class);
     private BibliotecaApp app = new BibliotecaApp();
     private Helper helper = new Helper();
+    private User user = helper.createUserInfoTest();
 
     @Test
     public void GetWelcomeMassageWhenInputRightCustomer() throws IOException {
@@ -34,7 +35,7 @@ public class UserLoginTest {
     public void GetWelcomeMassageWhenInputRightLibraryNumAndPsw() throws IOException {
         when(systemInput.getInputString()).thenReturn("007-1234").thenReturn("123456");
         ByteArrayOutputStream systemOutput =helper.systemOutput();
-        app.userLoginWithPsw(systemInput);
+        app.userLoginWithPsw(systemInput,user);
         assertEquals("please input your library number:\n" +
                 "please input your password:\n" +
                 "Welcome 007-1234 to Biblioteca!\n\n", systemOutput.toString());
@@ -44,7 +45,7 @@ public class UserLoginTest {
     public void showInvalidMassageWhenInputInvalidLibraryNumber() throws IOException {
         when(systemInput.getInputString()).thenReturn("007-123").thenReturn("007-1234").thenReturn("123456");
         ByteArrayOutputStream systemOutput =helper.systemOutput();
-        app.userLoginWithPsw(systemInput);
+        app.userLoginWithPsw(systemInput,user);
         assertEquals("please input your library number:\n" +
                 "Invalid library number,please try again! please input your library number:\n" +
                 "please input your password:\n" +
@@ -56,7 +57,7 @@ public class UserLoginTest {
     public void showErrorMassageWhenInputErrorLibraryNumber() throws IOException {
         when(systemInput.getInputString()).thenReturn("008-1234").thenReturn("007-1234").thenReturn("123456");
         ByteArrayOutputStream systemOutput =helper.systemOutput();
-        app.userLoginWithPsw(systemInput);
+        app.userLoginWithPsw(systemInput,user);
         assertEquals("please input your library number:\n" +
                 "Library number error,please try again! please input your library number:\n" +
                 "please input your password:\n" +
@@ -69,7 +70,7 @@ public class UserLoginTest {
         when(systemInput.getInputString()).thenReturn("007-1234").thenReturn("12345")
                                           .thenReturn("007-1234").thenReturn("123456");
         ByteArrayOutputStream systemOutput =helper.systemOutput();
-        app.userLoginWithPsw(systemInput);
+        app.userLoginWithPsw(systemInput,user);
         assertEquals("please input your library number:\n" +
                 "please input your password:\n" +
                 "Error password,please try again!\n" +

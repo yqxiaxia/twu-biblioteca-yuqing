@@ -58,4 +58,12 @@ class Helper {
         }
         return movieList;
     }
+
+    User createUserInfoTest() {
+        User user = new User();
+        user.setLibraryNumber("007-1234");
+        user.setName("YuqingXia");
+        user.setPassword("123456");
+        return user;
+    }
 }

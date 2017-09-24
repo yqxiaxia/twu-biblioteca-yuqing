@@ -6,6 +6,15 @@ class Library {
 
     private ArrayList<Book> bookList = new ArrayList<Book>();
     private ArrayList<Movie> movieList = new ArrayList<Movie>();
+    private ArrayList<User> userList;
+
+    ArrayList<User> getUserList() {
+        return userList;
+    }
+
+    void setUserList(ArrayList<User> userList) {
+        this.userList = userList;
+    }
 
     ArrayList<Book> getBookList() {
         return bookList;
@@ -15,11 +24,11 @@ class Library {
         this.bookList = bookList;
     }
 
-    public ArrayList<Movie> getMovieList() {
+    ArrayList<Movie> getMovieList() {
         return movieList;
     }
 
-    public void setMovieList(ArrayList<Movie> movieList) {
+    private void setMovieList(ArrayList<Movie> movieList) {
         this.movieList = movieList;
     }
 

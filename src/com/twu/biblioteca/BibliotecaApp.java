@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class BibliotecaApp {
 
     private static Library library = new Library();
+    private static User user = new User();
     private static String bookFileName = "Library_Book_Store.txt";
     private static String movieFileName = "Library_Movie_Store.txt";
 
@@ -14,9 +15,10 @@ public class BibliotecaApp {
         SystemInput systemInput = new SystemInput();
         library.initBookDetails();
         library.initMovieDetails();
+        user.initUserInfo();
 
         System.out.println("-------------------------------Biblioteca System-------------------------------");
-        app.userLoginWithPsw(systemInput);
+        app.userLoginWithPsw(systemInput, user.getUser());
         app.mainMenu(systemInput);
 
     }
@@ -248,15 +250,15 @@ public class BibliotecaApp {
         }
     }
 
-    void userLoginWithPsw(SystemInput systemInput) {
+    void userLoginWithPsw(SystemInput systemInput, User user) {
         while (true) {
             System.out.println("please input your library number:");
             String libraryNum = systemInput.getInputString();
             if (FormatMatchUnit.isValidLibraryNumber(libraryNum)){
-                if (libraryNum.equals("007-1234")) {
+                if (libraryNum.equals(user.getLibraryNumber())) {
                     System.out.println("please input your password:");
                     String psw = systemInput.getInputString();
-                    if (psw.equals("123456")){
+                    if (psw.equals(user.getPassword())){
                         System.out.println("Welcome " + libraryNum + " to Biblioteca!\n");
                         break;
                     }else {
@@ -293,5 +295,4 @@ public class BibliotecaApp {
                     + movie.getRating() + " | " + movie.isInLibrary());
         }
     }
-
 }
