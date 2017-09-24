@@ -16,8 +16,6 @@ public class BibliotecaApp {
         System.out.println("-------------------------------Biblioteca System-------------------------------");
         app.userLogin(systemInput);
         app.mainMenu(systemInput);
-        System.out.println();
-        app.bookManageMenu(systemInput,library.getBookList());
 
     }
 
@@ -36,6 +34,8 @@ public class BibliotecaApp {
                     showMenu = false;
                     System.out.println("--------------------------------BookList Detail--------------------------------");
                     showBookListDetial(library.getBookList());
+                    System.out.println();
+                    bookManageMenu(systemInput,library.getBookList());
                     break;
                 case 2:
                     showMenu = false;
