@@ -1,6 +1,8 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class BibliotecaApp {
 
@@ -248,6 +250,30 @@ public class BibliotecaApp {
         }
     }
 
+    void userLoginWithPsw(SystemInput systemInput) {
+        while (true) {
+            System.out.println("please input your library number:");
+            String libraryNum = systemInput.getInputString();
+            if (isValid(libraryNum)){
+                if (libraryNum.equals("007-1234")) {
+                    System.out.println("Welcome " + libraryNum + " to Biblioteca!\n");
+                    break;
+                } else {
+                    System.out.print("User name error,please try again! ");
+                }
+            }else {
+                System.out.print("Invalid library number,please try again! ");
+            }
+        }
+    }
+
+    private boolean isValid(String input){
+        String regEx = "[0-9]{3}-[0-9]{4}";
+        Pattern pattern = Pattern.compile(regEx);
+        Matcher matcher = pattern.matcher(input);
+        return matcher.matches();
+    }
+
     void showBookList(ArrayList<Book> bookList) {
         for (Book book : bookList) {
             System.out.println(book.getBookName());
@@ -270,6 +296,5 @@ public class BibliotecaApp {
                     + movie.getRating() + " | " + movie.isInLibrary());
         }
     }
-
 
 }

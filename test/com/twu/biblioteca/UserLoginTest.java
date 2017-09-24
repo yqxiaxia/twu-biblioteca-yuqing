@@ -29,4 +29,27 @@ public class UserLoginTest {
                 "Welcome YuqingXia to Biblioteca!\n\n", systemOutput.toString());
         verify(systemInput, times(2)).getInputString();
     }
+
+    @Test
+    public void GetWelcomeMassageWhenInputRightLibraryNumAndPsw() throws IOException {
+        when(systemInput.getInputString()).thenReturn("007-1234");
+        ByteArrayOutputStream systemOutput =helper.systemOutput();
+        app.userLoginWithPsw(systemInput);
+        assertEquals("please input your library number:\n" +
+                "Welcome 007-1234 to Biblioteca!\n\n", systemOutput.toString());
+    }
+
+    @Test
+    public void showErrorMassageWhenInputInvalidLibraryNumber() throws IOException {
+        when(systemInput.getInputString()).thenReturn("007-123").thenReturn("007-1234");
+        ByteArrayOutputStream systemOutput =helper.systemOutput();
+        app.userLoginWithPsw(systemInput);
+        assertEquals("please input your library number:\n" +
+                "Invalid library number,please try again! please input your library number:\n" +
+                "Welcome 007-1234 to Biblioteca!\n\n", systemOutput.toString());
+        verify(systemInput,times(2)).getInputString();
+    }
+
+
+
 }
