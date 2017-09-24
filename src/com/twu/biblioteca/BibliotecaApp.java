@@ -6,6 +6,8 @@ public class BibliotecaApp {
 
     private static Library library = new Library();
     private static String bookFileName = "Library_Book_Store.txt";
+    private static String movieFileName = "Library_Movie_Store.txt";
+
 
     public static void main(String[] args) {
         BibliotecaApp app = new BibliotecaApp();
@@ -42,6 +44,7 @@ public class BibliotecaApp {
                     System.out.println("--------------------------------MovieList Detail--------------------------------");
                     showMovieListDetial(library.getMovieList());
                     System.out.println();
+                    movieManageMenu(systemInput,library.getMovieList());
                     break;
                 case 3:
                     System.exit(0);
@@ -221,6 +224,7 @@ public class BibliotecaApp {
             }
             if (hasMovie) {
                 System.out.println("Thank you! Enjoy the movie");
+                FileUnit.writeMovieToFile(movieFileName,library.getMovieList());
             } else {
                 System.out.print("That movie is not available, ");
             }
