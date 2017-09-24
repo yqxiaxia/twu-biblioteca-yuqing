@@ -2,4 +2,6 @@ out/
 src/com/twu/biblioteca/testApp.java
 src/com/twu/biblioteca/testMenu.java
 src/com/twu/biblioteca/AppWithExit.java
-test/com/twu/biblioteca/AppWithExitTest.java
+test/com/twu/AppWithExitTest.java
+Library_Book_Store.txt
+Library_Movie_Store.txt

@@ -1,0 +1,10 @@
+0,movie-0,yuqing-0,2000,10,true
+1,movie-1,yuqing-1,2001,10,true
+2,movie-2,yuqing-2,2002,10,true
+3,movie-3,yuqing-3,2003,10,true
+4,movie-4,yuqing-4,2004,10,true
+5,movie-5,yuqing-5,2005,10,true
+6,movie-6,yuqing-6,2006,10,true
+7,movie-7,yuqing-7,2007,10,true
+8,movie-8,yuqing-8,2008,10,true
+9,movie-9,yuqing-9,2009,10,true

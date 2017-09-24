@@ -35,10 +35,19 @@ public class MainMenuTest {
     }
 
     @Test
-    public void exitSystemWhenInput2() throws Exception {
-        when(systemInput.getInputInt()).thenReturn(2);
+    public void exitSystemWhenInput3() throws Exception {
+        when(systemInput.getInputInt()).thenReturn(3);
         exit.expectSystemExitWithStatus(0);
         app.mainMenu(systemInput);
+    }
+
+    @Test
+    public void showMovieListWhenInput2() throws Exception {
+        when(systemInput.getInputInt()).thenReturn(2);
+        ByteArrayOutputStream systemOutput = helper.systemOutput();
+        app.mainMenu(systemInput);
+        assertEquals("1.List Books 2.List Movies 3.Quit\n" +
+                "--------------------------------MovieList Detail--------------------------------\n",systemOutput.toString());
     }
 
 }

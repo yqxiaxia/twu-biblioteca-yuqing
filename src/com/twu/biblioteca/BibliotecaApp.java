@@ -5,12 +5,13 @@ import java.util.ArrayList;
 public class BibliotecaApp {
 
     private static Library library = new Library();
-    private static String fileName = "Library_Store.txt";
+    private static String bookFileName = "Library_Book_Store.txt";
 
     public static void main(String[] args) {
         BibliotecaApp app = new BibliotecaApp();
         SystemInput systemInput = new SystemInput();
         library.initBookDetails();
+        library.initMovieDetails();
 
         System.out.println("-------------------------------Biblioteca System-------------------------------");
         app.userLogin(systemInput);
@@ -37,6 +38,11 @@ public class BibliotecaApp {
                     showBookListDetial(library.getBookList());
                     break;
                 case 2:
+                    showMenu = false;
+                    System.out.println("--------------------------------MovieList Detail--------------------------------");
+                    showMovieListDetial(library.getMovieList());
+                    break;
+                case 3:
                     System.exit(0);
                     break;
                 default:
@@ -105,7 +111,7 @@ public class BibliotecaApp {
             }
             if (hasBook) {
                 System.out.println("Thank you! Enjoy the book");
-                FileUnit.writeToFile(fileName,library.getBookList());
+                FileUnit.writeBookToFile(bookFileName,library.getBookList());
             } else {
                 System.out.print("That book is not available, ");
             }
@@ -147,7 +153,7 @@ public class BibliotecaApp {
             }
             if (hasBook){
                 System.out.println("Thank you for returning the book.");
-                FileUnit.writeToFile(fileName,library.getBookList());
+                FileUnit.writeBookToFile(bookFileName,library.getBookList());
             }else {
                 System.out.print("That is not a valid book to return. ");
             }
