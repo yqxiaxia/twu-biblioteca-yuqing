@@ -56,11 +56,18 @@ public class MainMenuTest {
 
     @Test
     public void showMovieListWhenInput2() throws Exception {
-        when(systemInput.getInputInt()).thenReturn(2);
-        ByteArrayOutputStream systemOutput = helper.systemOutput();
+        when(systemInput.getInputInt()).thenReturn(2).thenReturn(2);
+        exit.expectSystemExitWithStatus(0);
+        exit.checkAssertionAfterwards(new Assertion() {
+            public void checkAssertion() throws Exception {
+                verify(systemInput, times(2)).getInputInt();
+                assertEquals("1.List Books 2.List Movies 3.Quit\n" +
+                        "--------------------------------MovieList Detail--------------------------------\n\n"
+                        + "1.Check-out Movie 2.Quit\n",systemOutput.toString());
+            }
+        });
         app.mainMenu(systemInput);
-        assertEquals("1.List Books 2.List Movies 3.Quit\n" +
-                "--------------------------------MovieList Detail--------------------------------\n\n",systemOutput.toString());
+
     }
 
 }
