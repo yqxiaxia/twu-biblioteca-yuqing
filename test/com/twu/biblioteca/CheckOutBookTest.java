@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class CheckBookTest {
+public class CheckOutBookTest {
 
     private SystemInput systemInput = mock(SystemInput.class);
     private BibliotecaApp app = new BibliotecaApp();

@@ -60,7 +60,7 @@ public class MainMenuTest {
         ByteArrayOutputStream systemOutput = helper.systemOutput();
         app.mainMenu(systemInput);
         assertEquals("1.List Books 2.List Movies 3.Quit\n" +
-                "--------------------------------MovieList Detail--------------------------------\n",systemOutput.toString());
+                "--------------------------------MovieList Detail--------------------------------\n\n",systemOutput.toString());
     }
 
 }

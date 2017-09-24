@@ -41,6 +41,7 @@ public class BibliotecaApp {
                     showMenu = false;
                     System.out.println("--------------------------------MovieList Detail--------------------------------");
                     showMovieListDetial(library.getMovieList());
+                    System.out.println();
                     break;
                 case 3:
                     System.exit(0);
@@ -164,6 +165,70 @@ public class BibliotecaApp {
         return returnBook;
     }
 
+    void movieManageMenu(SystemInput systemInput,ArrayList<Movie> movieList){
+        while (true) {
+            System.out.println("1.Check-out Movie 2.Quit");
+
+            int checkOption;
+            try {
+                checkOption = systemInput.getInputInt();
+            } catch (Exception e) {
+                checkOption = -1;
+            }
+
+            switch (checkOption) {
+                case 1:
+                    checkoutMovie(systemInput, movieList);
+                    break;
+                case 2:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.print("Select a valid option! ");
+                    break;
+            }
+        }
+    }
+
+    void checkoutMovie(SystemInput systemInput, ArrayList<Movie> movieList){
+        boolean checkoutMovie = true;
+
+        while (checkoutMovie) {
+            System.out.println("Please input Check-out book id:");
+
+            int checekOutMovieId;
+            try {
+                checekOutMovieId = systemInput.getInputInt();
+            } catch (Exception e) {
+                checekOutMovieId = -1;
+            }
+
+            checkoutMovie = removeMovieById(movieList,checekOutMovieId);
+        }
+    }
+
+    private boolean removeMovieById(ArrayList<Movie> movieList,int checkOutMovieId){
+        boolean checkoutMovie = true;
+        boolean hasMovie = false;
+        if (movieList.size() > 0 && checkOutMovieId != -1) {
+            for (Movie movie : movieList) {
+                if (movie.getMovieId() == checkOutMovieId && movie.isInLibrary()) {
+                    movie.setInLibrary(false);
+                    hasMovie = true;
+                    checkoutMovie = false;
+                    break;
+                }
+            }
+            if (hasMovie) {
+                System.out.println("Thank you! Enjoy the movie");
+            } else {
+                System.out.print("That movie is not available, ");
+            }
+        } else {
+            System.out.print("That movie is not available, ");
+        }
+        return checkoutMovie;
+    }
 
     void userLogin(SystemInput systemInput) {
         while (true) {
