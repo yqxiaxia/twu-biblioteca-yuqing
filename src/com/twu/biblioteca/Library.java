@@ -15,16 +15,7 @@ class Library {
     }
 
     void initBookDetails() {
-        ArrayList<Book> bookList = new ArrayList<Book>();
-        for (int i = 0; i < 10; i++) {
-            Book book = new Book();
-            book.setBookId(i);
-            book.setBookName("book-" + i);
-            book.setBookAuthor("yuqing-" + i);
-            book.setBookPubliced("2017-09-0" + i);
-            book.setInLibrary(true);
-            bookList.add(book);
-        }
+        ArrayList<Book> bookList = FileUnit.readFromFile("Library_Store.txt");
         setBookList(bookList);
     }
 

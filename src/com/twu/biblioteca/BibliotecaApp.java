@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class BibliotecaApp {
 
     private static Library library = new Library();
+    private static String fileName = "Library_Store.txt";
 
     public static void main(String[] args) {
         BibliotecaApp app = new BibliotecaApp();
@@ -104,6 +105,7 @@ public class BibliotecaApp {
             }
             if (hasBook) {
                 System.out.println("Thank you! Enjoy the book");
+                FileUnit.writeToFile(fileName,library.getBookList());
             } else {
                 System.out.print("That book is not available, ");
             }
@@ -145,6 +147,7 @@ public class BibliotecaApp {
             }
             if (hasBook){
                 System.out.println("Thank you for returning the book.");
+                FileUnit.writeToFile(fileName,library.getBookList());
             }else {
                 System.out.print("That is not a valid book to return. ");
             }

@@ -5,6 +5,7 @@ public class Book {
     private String bookName;
     private String bookAuthor;
     private boolean inLibrary;
+    private String bookPubliced;
 
     public boolean isInLibrary() {
         return inLibrary;
@@ -23,6 +24,9 @@ public class Book {
     }
 
     public String getBookName() {
+        if (bookName == null){
+            bookName = "bookName";
+        }
         return bookName;
     }
 
@@ -31,6 +35,9 @@ public class Book {
     }
 
     public String getBookAuthor() {
+        if (bookAuthor == null){
+            bookAuthor = "bookAuthor";
+        }
         return bookAuthor;
     }
 
@@ -39,12 +46,13 @@ public class Book {
     }
 
     public String getBookPubliced() {
+        if (bookPubliced == null){
+            bookPubliced = "bookPubliced";
+        }
         return bookPubliced;
     }
 
     public void setBookPubliced(String bookPubliced) {
         this.bookPubliced = bookPubliced;
     }
-
-    private String bookPubliced;
 }
