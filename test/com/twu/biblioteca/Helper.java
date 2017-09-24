@@ -43,4 +43,19 @@ class Helper {
         }
         return bookList;
     }
+
+    ArrayList<Movie> createMovieListInTest(){
+        ArrayList<Movie> movieList = new ArrayList<Movie>();
+        for (int i = 0; i < 2; i++) {
+            Movie movie = new Movie();
+            movie.setMovieId(i);
+            movie.setName("movie-"+i);
+            movie.setDirector("yuqing-"+i);
+            movie.setYear("2017-"+i);
+            movie.setRating("10");
+            movie.setInLibrary(true);
+            movieList.add(movie);
+        }
+        return movieList;
+    }
 }

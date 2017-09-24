@@ -22,7 +22,8 @@ public class MainMenuTest {
         when(systemInput.getInputInt()).thenReturn(1);
         ByteArrayOutputStream systemOutput = helper.systemOutput();
         app.mainMenu(systemInput);
-        assertEquals("1.List Book  2.Quit\n", systemOutput.toString());
+        assertEquals("1.List Books 2.List Movies 3.Quit\n" +
+                "--------------------------------BookList Detail--------------------------------\n", systemOutput.toString());
     }
 
     @Test

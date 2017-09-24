@@ -15,8 +15,6 @@ public class BibliotecaApp {
         System.out.println("-------------------------------Biblioteca System-------------------------------");
         app.userLogin(systemInput);
         app.mainMenu(systemInput);
-        System.out.println("--------------------------------BookList Detail--------------------------------");
-        app.showBookListDetial(library.getBookList());
         System.out.println();
         app.bookManageMenu(systemInput,library.getBookList());
 
@@ -25,7 +23,7 @@ public class BibliotecaApp {
     void mainMenu(SystemInput systemInput) {
         boolean showMenu = true;
         while (showMenu) {
-            System.out.println("1.List Book  2.Quit");
+            System.out.println("1.List Books 2.List Movies 3.Quit");
             int menuOption;
             try {
                 menuOption = systemInput.getInputInt();
@@ -35,6 +33,8 @@ public class BibliotecaApp {
             switch (menuOption) {
                 case 1:
                     showMenu = false;
+                    System.out.println("--------------------------------BookList Detail--------------------------------");
+                    showBookListDetial(library.getBookList());
                     break;
                 case 2:
                     System.exit(0);
@@ -186,4 +186,15 @@ public class BibliotecaApp {
                              + book.isInLibrary());
         }
     }
+
+    void showMovieListDetial(ArrayList<Movie> movieList) {
+
+        for (Movie movie:movieList) {
+            System.out.println(movie.getMovieId() + " | " + movie.getName() + " | "
+                    + movie.getDirector() + " | " + movie.getYear() + " | "
+                    + movie.getRating() + " | " + movie.isInLibrary());
+        }
+    }
+
+
 }
