@@ -25,7 +25,7 @@ public class MainMenuTest {
         exit.expectSystemExitWithStatus(0);
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() throws Exception {
-                assertEquals("1.List Books 2.List Movies 3.Quit\n" +
+                assertEquals("1.List Books 2.List Movies 3.Quit 4.show my information\n" +
                         "--------------------------------BookList Detail--------------------------------\n" +
                         "\n" + "1.Check-out 2.Return Book 3.Quit\n", systemOutput.toString());
                 verify(systemInput, times(2)).getInputInt();
@@ -61,9 +61,9 @@ public class MainMenuTest {
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() throws Exception {
                 verify(systemInput, times(2)).getInputInt();
-                assertEquals("1.List Books 2.List Movies 3.Quit\n" +
-                        "--------------------------------MovieList Detail--------------------------------\n\n"
-                        + "1.Check-out Movie 2.Quit\n",systemOutput.toString());
+                assertEquals("1.List Books 2.List Movies 3.Quit 4.show my information\n" +
+                        "--------------------------------MovieList Detail--------------------------------\n" +
+                        "\n" + "1.Check-out Movie 2.Quit\n",systemOutput.toString());
             }
         });
         app.mainMenu(systemInput);

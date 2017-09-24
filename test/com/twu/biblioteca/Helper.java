@@ -64,6 +64,9 @@ class Helper {
         user.setLibraryNumber("007-1234");
         user.setName("YuqingXia");
         user.setPassword("123456");
+        user.setPhoneNumber("13545092422");
+        user.setEmail("yqxia@thoughtworks.com");
+        user.setAddress("Wuhan");
         return user;
     }
 }

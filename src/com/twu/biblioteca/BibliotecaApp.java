@@ -26,7 +26,7 @@ public class BibliotecaApp {
     void mainMenu(SystemInput systemInput) {
         boolean showMenu = true;
         while (showMenu) {
-            System.out.println("1.List Books 2.List Movies 3.Quit");
+            System.out.println("1.List Books 2.List Movies 3.Quit 4.show my information");
             int menuOption;
             try {
                 menuOption = systemInput.getInputInt();
@@ -50,6 +50,9 @@ public class BibliotecaApp {
                     break;
                 case 3:
                     System.exit(0);
+                    break;
+                case 4:
+                    showUserInfo(user.getUser());
                     break;
                 default:
                     System.out.print("Select a valid option! ");
@@ -294,5 +297,11 @@ public class BibliotecaApp {
                     + movie.getDirector() + " | " + movie.getYear() + " | "
                     + movie.getRating() + " | " + movie.isInLibrary());
         }
+    }
+
+    void showUserInfo(User user) {
+        System.out.println(user.getLibraryNumber() + " | " + user.getName() + " | "
+                + user.getPhoneNumber() + " | " + user.getEmail()
+                + " | " + user.getAddress());
     }
 }
